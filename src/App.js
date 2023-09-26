@@ -40,8 +40,10 @@ class App extends Component {
               type="text"
               value={this.state.input}
               readOnly
-              style={{ fontSize: '72px', height: '60px', background-color: black;  }} 
+              style={{ fontSize: '72px', height: '60px' }} 
+              style={{ background-color: black }}
             />
+            
             <div className="result" style={{ fontSize: '24px' }}>{this.state.output}</div> 
           </div>
           <div className="buttons">
