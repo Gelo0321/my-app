@@ -41,7 +41,7 @@ class App extends Component {
               value={this.state.input}
               readOnly
               style={{ fontSize: '72px', height: '60px' }} 
-              style={{ background-color: black }}
+             
             />
             
             <div className="result" style={{ fontSize: '24px' }}>{this.state.output}</div> 
