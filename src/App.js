@@ -1,87 +1,82 @@
-import React, { Component } from 'react';
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      input: '',
-      output: '',
-    };
-  }
-
-  handleButtonClick = (value) => {
-    if (value === '=') {
-      try {
-        const result = eval(this.state.input);
-        if (!isNaN(result)) {
-          this.setState({ output: result });
-        } else {
-          this.setState({ output: 'Error' });
-        }
-      } catch (error) {
-        this.setState({ output: 'Error' });
-      }
-    } else if (value === 'C') {
-      this.setState({ input: '', output: '' });
-    } else {
-      this.setState((prevState) => ({
-        input: prevState.input + value,
-      }));
-    }
-  };
-
-  render() {
-    return (
-      <div className="calculator-container">
-        <div className="calculator">
-          <div className="display">
-            <input
-              type="text"
-              value={this.state.input}
-              readOnly
-              style={{ fontSize: '72px', height: '60px' }} 
-             
-            />
-            
-            <div className="result" style={{ fontSize: '24px' }}>{this.state.output}</div> 
-          </div>
-          <div className="buttons">
-            <div className="row">
-              <button onClick={() => this.handleButtonClick('C')} style={{ fontSize: '24px', width: '20%' }}>C</button> 
-              <button onClick={() => this.handleButtonClick('%')} style={{ fontSize: '24px', width: '20%' }}>%</button>
-              <button onClick={() => this.handleButtonClick('.')} style={{ fontSize: '24px', width: '20%' }}>.</button>
-              <button onClick={() => this.handleButtonClick('/')} style={{ fontSize: '24px', width: '20%' }}>/</button>
-            </div>
-            <div className="row">
-              <button onClick={() => this.handleButtonClick('7')} style={{ fontSize: '24px', width: '20%' }}>7</button>
-              <button onClick={() => this.handleButtonClick('8')} style={{ fontSize: '24px', width: '20%' }}>8</button>
-              <button onClick={() => this.handleButtonClick('9')} style={{ fontSize: '24px', width: '20%' }}>9</button>
-              <button onClick={() => this.handleButtonClick('*')} style={{ fontSize: '24px', width: '20%' }}>*</button>
-            </div>
-            <div className="row">
-              <button onClick={() => this.handleButtonClick('4')} style={{ fontSize: '24px', width: '20%' }}>4</button>
-              <button onClick={() => this.handleButtonClick('5')} style={{ fontSize: '24px', width: '20%' }}>5</button>
-              <button onClick={() => this.handleButtonClick('6')} style={{ fontSize: '24px', width: '20%' }}>6</button>
-              <button onClick={() => this.handleButtonClick('-')} style={{ fontSize: '24px', width: '20%' }}>-</button>
-            </div>
-            <div className="row">
-              <button onClick={() => this.handleButtonClick('1')} style={{ fontSize: '24px', width: '20%' }}>1</button>
-              <button onClick={() => this.handleButtonClick('2')} style={{ fontSize: '24px', width: '20%' }}>2</button>
-              <button onClick={() => this.handleButtonClick('3')} style={{ fontSize: '24px', width: '20%' }}>3</button>
-              <button onClick={() => this.handleButtonClick('+')} style={{ fontSize: '24px', width: '20%' }}>+</button>
-            </div>
-            <div className="row">
-              <button onClick={() => this.handleButtonClick('0')} style={{ fontSize: '24px', width: '20%' }}>0</button>
-              <button onClick={() => this.handleButtonClick('00')} style={{ fontSize: '24px', width: '20%' }}>00</button>
-              <button onClick={() => this.handleButtonClick('.')} style={{ fontSize: '24px', width: '20%' }}>.</button>
-              <button onClick={() => this.handleButtonClick('=')} style={{ fontSize: '24px', width: '20%' }}>=</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+function MyButton({label, onClick}) {
+  return (
+    <button className="CalcButton" onClick ={onClick}>
+      {label}
+    </button>
+  );
 }
 
-export default App;
+function Display({display}) {
+  return (
+    <div className="CalcDisplay">
+      {display}
+    </div>    
+  );
+}
+
+export default function App() {
+
+  const numberClickHandler = (e) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+
+    console.log(value);
+    alert(value);
+
+  }
+
+  const operatorClickHandler = (e) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+
+    console.log(value);
+    alert(value);
+
+  }
+
+  const equalClickHandler = (e) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+
+    console.log(value);
+    alert(value);
+
+  }
+
+  const clearClickHandler = (e) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+
+    console.log(value);
+    alert(value);
+
+  }
+
+
+  return (
+    <div className="App">
+      <h1>Welcome to my app</h1>
+      <Display display={0} />
+      <div className="ButtonContainer">
+        <MyButton label={7} onClick={numberClickHandler}/>
+        <MyButton label={8} onClick={numberClickHandler}/>
+        <MyButton label={9} onClick={numberClickHandler}/>
+        <MyButton label={"+"} onClick={operatorClickHandler}/>
+        <MyButton label={4} onClick={numberClickHandler}/>
+        <MyButton label={5} onClick={numberClickHandler}/>
+        <MyButton label={6} onClick={numberClickHandler}/>
+        <MyButton label={"-"} onClick={operatorClickHandler}/>
+        <MyButton label={1} onClick={numberClickHandler}/>
+        <MyButton label={2} onClick={numberClickHandler}/>
+        <MyButton label={3} onClick={numberClickHandler}/>
+        <MyButton label={"*"} onClick={operatorClickHandler}/>
+        <MyButton label={"C"} onClick={clearClickHandler}/>
+        <MyButton label={0} onClick={numberClickHandler}/>
+        <MyButton label={"="} onClick={equalClickHandler}/>
+        <MyButton label={"÷"} onClick={operatorClickHandler}/>
+      </div>
+    </div>
+  );
+}
