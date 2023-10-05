@@ -40,7 +40,7 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.CalcButtonNum {
+.CalcButtonNum, .CalcButton, .CalcButtonName {
     font-size: 1.2em;
     justify-content: center;
     color: #636059;
