@@ -1,51 +1,81 @@
 .App {
+  box-sizing: border-box;
   text-align: center;
-  width: 500px;
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: #C3CEDA;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  color:rgb(241, 236, 236);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.CalcContainer {
+  width: 500px;
+  margin:auto;
+  text-align: center;
+  padding: 15px;
+  border: 10px solid gray;
+  border-radius: 10px;
+  background-color: #636059;
+  box-shadow: 0 0 20px rgba(0, 0, 0 , 4);
 }
 
 .CalcDisplay {
-  border: 1px solid black;
-  height: 40px;
-  font-size: 2em;
+  border: 1px solid #212223;
+  height: 50px;
+  font-size: 1.5em;
   text-align: right;
-  padding:0 10px;
-  background:#000;
-  color:#fff;
+  padding:20px;
+  background: #2b2828;
+  color:#fcf6f6;
+  border-radius: 10px;
+  margin-bottom: 100px;
+  
+  box-shadow: 0 5px 10px rgba(0, 0, 0 , 5);
 }
 
 .ButtonContainer {
-    display: flex;
-    flex: 0 1 100%;
-    flex-wrap: wrap;
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.CalcButton {
-    display: flex;
-    flex: 0 1 25%;
-    font-size: 2em;
+.CalcButtonNum {
+    font-size: 1.2em;
     justify-content: center;
+    color: #636059;
+    background-color: #F2F1F0;
+    border: 1px solid #F2F1FD;
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+
+
+.CalcButton {
+
+  color: #636059;
+  background-color: #D6D6D6;
+
+}
+
+.CalcButtonName {
+  color: #24444C;
+  background-color: #f8f4f4;
+
+}
+
+.Name {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.Notes {
+  padding: 10px;
+  margin: 100px 200px;
+  font-size: 1.5em;
+  text-align: left;
+  color: #f1f3f5;
+  font-weight: 500;
 }

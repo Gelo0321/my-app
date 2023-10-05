@@ -1,82 +1,109 @@
+import React, { useState } from 'react';
 import './App.css';
 
-function MyButton({label, onClick}) {
+function CalcButton({ label, onClick, buttonClassName = "CalcButton" }) {
   return (
-    <button className="CalcButton" onClick ={onClick}>
+    <button className={buttonClassName} onClick={onClick}>
       {label}
     </button>
   );
 }
 
-function Display({display}) {
+function Display({ display }) {
   return (
     <div className="CalcDisplay">
       {display}
-    </div>    
+    </div>
   );
 }
 
 export default function App() {
+  const [disp, setDisp] = useState("0");
+  const [num1, setNum1] = useState(null);
+  const [oper, setOper] = useState(null);
+  const [num2, setNum2] = useState(null);
 
   const numberClickHandler = (e) => {
     e.preventDefault();
     const value = e.target.innerHTML;
+    let num = value;
 
-    console.log(value);
-    alert(value);
-
+    if (oper === null) {
+      if (num1 !== null) {
+        num = num1 + num;
+      }
+      setNum1(num);
+      setDisp(num);
+    } else {
+      if (num2 !== null) {
+        num = num2 + num;
+      }
+      setNum2(num);
+      setDisp(num);
+    }
   }
 
   const operatorClickHandler = (e) => {
     e.preventDefault();
     const value = e.target.innerHTML;
 
-    console.log(value);
-    alert(value);
-
+    setOper(value);
+    setDisp(value);
   }
 
   const equalClickHandler = (e) => {
     e.preventDefault();
-    const value = e.target.innerHTML;
 
-    console.log(value);
-    alert(value);
-
+    if (oper === "+") {
+      setDisp(parseInt(num1) + parseInt(num2));
+    } else {
+      setDisp("ERROR");
+    }
   }
 
   const clearClickHandler = (e) => {
     e.preventDefault();
-    const value = e.target.innerHTML;
 
-    console.log(value);
-    alert(value);
-
+    setDisp("0");
+    setNum1(null);
+    setOper(null);
+    setNum2(null);
   }
 
+  const nameClickHandler = (e) => {
+    e.preventDefault();
+    setDisp("Angelo Manalang");
+  }
 
   return (
     <div className="App">
-      <h1>Welcome to my app</h1>
-      <Display display={0} />
+      <div className="CalcContainer">
+      <h1>CALCULATOR OF ANGELO MANALANG CPE3A</h1>
+      <Display display={disp} />
       <div className="ButtonContainer">
-        <MyButton label={7} onClick={numberClickHandler}/>
-        <MyButton label={8} onClick={numberClickHandler}/>
-        <MyButton label={9} onClick={numberClickHandler}/>
-        <MyButton label={"+"} onClick={operatorClickHandler}/>
-        <MyButton label={4} onClick={numberClickHandler}/>
-        <MyButton label={5} onClick={numberClickHandler}/>
-        <MyButton label={6} onClick={numberClickHandler}/>
-        <MyButton label={"-"} onClick={operatorClickHandler}/>
-        <MyButton label={1} onClick={numberClickHandler}/>
-        <MyButton label={2} onClick={numberClickHandler}/>
-        <MyButton label={3} onClick={numberClickHandler}/>
-        <MyButton label={"*"} onClick={operatorClickHandler}/>
-        <MyButton label={"C"} onClick={clearClickHandler}/>
-        <MyButton label={0} onClick={numberClickHandler}/>
-        <MyButton label={"="} onClick={equalClickHandler}/>
-        <MyButton label={"÷"} onClick={operatorClickHandler}/>
+        <CalcButton label={7} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={8} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={9} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={"C"} onClick={clearClickHandler} />
+        <CalcButton label={6} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={5} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={4} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={"*"} onClick={operatorClickHandler} />
+        <CalcButton label={3} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={2} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={1} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        <CalcButton label={"-"} onClick={operatorClickHandler} />
+        
+        <CalcButton label={"="} onClick={equalClickHandler} />
+        <CalcButton label={0} onClick={numberClickHandler} buttonClassName={"CalcButtonNum"} />
+        
+        <CalcButton label={"÷"} onClick={operatorClickHandler} />
+        <CalcButton label={"+"} onClick={operatorClickHandler} />
       </div>
+      <div className="Name">
+        <CalcButton label={"Manalang"} onClick={nameClickHandler} buttonClassName={"CalcButtonName"} />
+      </div>
+    </div>
     </div>
   );
 }
